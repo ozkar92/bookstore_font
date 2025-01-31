@@ -1,0 +1,44 @@
+<div class="container">
+    <section class="info">
+        <span class="title">
+            EDIT BOOK : {{data.book.id}}
+        </span>
+<hr/>
+      </section>
+      <form>
+        <mat-form-field appearance="outline">
+            <mat-label>Tittle:</mat-label>
+            <input matInput type="text"  [(ngModel)]="data.book.title" name="title" #title="ngModel" max="150" required />
+            @if(title.errors?.['required']){
+            <mat-error>Campo <b>requerido</b></mat-error
+            >} @if(!title.errors?.['required'] && title.errors?.['max']){
+            <mat-error><b>150 caracteres</b> como máximo</mat-error>}
+          </mat-form-field>
+          <br />
+          <mat-form-field appearance="outline">
+            <mat-label>Author:</mat-label>
+            <input matInput type="text"   [(ngModel)]="data.book.author" name="author" #author="ngModel" max="150" required/>
+            @if(author.errors?.['required']){
+            <mat-error>Campo <b>requerido</b></mat-error
+            >} @if(!author.errors?.['required'] && author.errors?.['max']){
+            <mat-error><b>150 caracteres</b> como máximo</mat-error>}
+          </mat-form-field>
+          <br />
+          <mat-form-field appearance="outline">
+            <mat-label>ISBN:</mat-label>
+            <input matInput type="text"  [(ngModel)]="data.book.isbn" name="isbn" #isbn="ngModel" max="150" required/>
+            @if(isbn.errors?.['required']){
+            <mat-error>Campo <b>requerido</b></mat-error
+            >} @if(!isbn.errors?.['required'] && isbn.errors?.['max']){
+            <mat-error><b>150 caracteres</b> como máximo</mat-error>}
+          </mat-form-field>
+          <br />
+      </form>
+      <section>
+        <button
+          mat-fab class="add"
+          [disabled]="(title.invalid || author.invalid || isbn.invalid)"  (click)="updateBook()">
+           UPDATE
+        </button>
+      </section> 
+</div>

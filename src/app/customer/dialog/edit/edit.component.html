@@ -1,0 +1,53 @@
+<div class="container">
+    <section class="info">
+        <span class="title">
+            EDIT CUSTOMER : {{data.customer.id}}
+        </span>
+<hr/>
+      </section>
+      <form>
+        <mat-form-field appearance="outline">
+            <mat-label>Name:</mat-label>
+            <input matInput type="text"  [(ngModel)]="data.customer.name" name="name" #name="ngModel" max="150" required />
+            @if(name.errors?.['required']){
+            <mat-error>Campo <b>requerido</b></mat-error
+            >} @if(!name.errors?.['required'] && name.errors?.['max']){
+            <mat-error><b>150 caracteres</b> como máximo</mat-error>}
+          </mat-form-field>
+          <br />
+          <mat-form-field appearance="outline">
+            <mat-label>Last Name:</mat-label>
+            <input matInput type="text"   [(ngModel)]="data.customer.lastName" name="lastName" #lastName="ngModel" max="150" required/>
+            @if(lastName.errors?.['required']){
+            <mat-error>Campo <b>requerido</b></mat-error
+            >} @if(!lastName.errors?.['required'] && lastName.errors?.['max']){
+            <mat-error><b>150 caracteres</b> como máximo</mat-error>}
+          </mat-form-field>
+          <br />
+          <mat-form-field appearance="outline">
+            <mat-label>DNI:</mat-label>
+            <input matInput type="text"  [(ngModel)]="data.customer.dni" name="dni" #dni="ngModel" max="150" required/>
+            @if(dni.errors?.['required']){
+            <mat-error>Campo <b>requerido</b></mat-error
+            >} @if(!dni.errors?.['required'] && dni.errors?.['max']){
+            <mat-error><b>150 caracteres</b> como máximo</mat-error>}
+          </mat-form-field>
+          <br />
+          <mat-form-field appearance="outline">
+            <mat-label>Age:</mat-label>
+            <input matInput type="number" max="100" min="18" [(ngModel)]="data.customer.age" name="age" #age="ngModel"  required/>
+            @if(age.errors?.['required']){
+            <mat-error>Campo <b>requerido</b></mat-error
+            >}@if( dni.errors?.['min'] && dni.errors?.['max']){
+                <mat-error><b>Entre 18 y 100 </b> como máximo</mat-error>}
+          </mat-form-field>
+      </form>
+      <section>
+        <button
+          mat-fab class="add"
+          [disabled]="(name.invalid || lastName.invalid || dni.invalid  || age.invalid)" (click)="updateBook()" >
+           UPDATE
+        </button>
+
+      </section> 
+</div>

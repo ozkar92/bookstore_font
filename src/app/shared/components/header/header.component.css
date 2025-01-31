@@ -1,0 +1,39 @@
+header {
+    background-color: var(--primary-color);
+    height: 80px;
+    display: flex;
+    justify-content: center;
+    & .container {
+      width: 1000px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      & .logo-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 10px;
+        & img {
+          width: 100px;
+          height: 80px;
+        }
+        & h1 {
+          color: white;
+          font-weight: 500;
+          margin: 0;
+        }
+      }
+      & .buttons-container {
+        display: flex;
+        justify-content: center;
+        gap: 10px;
+        & .primary {
+          color: var(--primary-color);
+        }
+        & .accent {
+          color: var(--accent-color);
+        }
+      }
+    }
+  }
+  

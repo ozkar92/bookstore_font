@@ -1,0 +1,16 @@
+.page-container {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    & .content-container {
+        display: flex;
+        flex-direction: column;
+        align-items: justify;
+        height: inherit;
+    & .o-data-message{
+    text-align: center;
+    margin: 0 auto;
+    }
+    }
+
+}

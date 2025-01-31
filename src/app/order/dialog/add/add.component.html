@@ -1,0 +1,67 @@
+<div class="container">
+  <section class="info">
+    <span class="title">
+        ADD NEW ORDER
+    </span>
+<hr/>
+  </section>
+    <form>
+        <mat-form-field>
+            <mat-label>Customer:</mat-label>
+            <mat-select  [(ngModel)]="selectedCustomer" name="customerslc" required>
+              @for (customer of customers.data; track customer.id) {
+              <mat-option [value]="customer.id">
+                {{ customer.name+' '+customer.lastName }}
+              </mat-option>
+              }
+            </mat-select>
+            @if(selectedCustomer==0){
+              <mat-error>Campo <b>requerido</b></mat-error
+              >}
+          </mat-form-field>
+          <br>
+          <table mat-table [dataSource]="books.data" class="mat-elevation-z8">
+            <ng-container matColumnDef="action" >
+              <th mat-header-cell *matHeaderCellDef>  </th>
+              <td mat-cell *matCellDef="let element">
+                <mat-checkbox   ngModel #chkbook="ngModel"   name="chkbook" (change)="updateSelected($event,element.id)"></mat-checkbox>
+                 </td>
+            </ng-container>
+    
+            <ng-container matColumnDef="id">
+              <th mat-header-cell *matHeaderCellDef> ID </th>
+              <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+            </ng-container>
+            <ng-container matColumnDef="title">
+              <th mat-header-cell *matHeaderCellDef> Tittle </th>
+              <td mat-cell *matCellDef="let element"> {{element.title}} </td>
+            </ng-container>
+      
+            <ng-container matColumnDef="author">
+              <th mat-header-cell *matHeaderCellDef> Author </th>
+              <td mat-cell *matCellDef="let element"> {{element.author}} </td>
+            </ng-container>
+            
+            <ng-container matColumnDef="isbn">
+              <th mat-header-cell *matHeaderCellDef> ISBN </th>
+              <td mat-cell *matCellDef="let element"> {{element.isbn}} </td>
+            </ng-container>
+            <tr mat-header-row *matHeaderRowDef="['action','id', 'title', 'author', 'isbn'];"></tr>
+            <tr mat-row *matRowDef="let row; columns: ['action','id', 'title', 'author', 'isbn'];"></tr> 
+          </table>
+          
+          <div *ngIf="!books || books.data.length === 0" class="no-data-message">
+            No hay libros disponibles.
+          </div>
+    </form>
+    <section >
+      <button
+        mat-fab class="add"
+        (click)="createOrder()"
+        [disabled]="(selectedCustomer==0 || booksSelected.length==0)"
+      >
+         CREATE ORDER
+      </button>
+       
+    </section> 
+</div>
